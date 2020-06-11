@@ -2,12 +2,12 @@ import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 
 import { AppComponent } from './app.component';
-import { PathfinderComponent } from './pathfinder/pathfinder.component';
+import { PathfindingComponent } from './pathfinding/pathfinding.component';
 
 @NgModule({
   declarations: [
     AppComponent,
-    PathfinderComponent
+    PathfindingComponent
   ],
   imports: [
     BrowserModule
