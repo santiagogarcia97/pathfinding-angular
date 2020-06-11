@@ -1,0 +1,12 @@
+.container  {
+  text-align: center;
+}
+.node {
+  border: 1px solid;
+  display: inline-block;
+  height: 25px;
+  width: 25px;
+}
+.row {
+  height: 25px;
+}

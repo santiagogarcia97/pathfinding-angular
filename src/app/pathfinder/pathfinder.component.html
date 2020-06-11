@@ -1,0 +1,8 @@
+<div class="container">
+  <div class="row" *ngFor="let row of this.grid ">
+
+    <div class="node" *ngFor="let col of row" style="background-color: {{col.color}}">
+    </div>
+
+  </div>
+</div>
