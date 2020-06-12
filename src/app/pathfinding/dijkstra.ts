@@ -1,6 +1,6 @@
 import {Node} from './types';
 
-export const dijkstra = (grid: Node[][], startNode: Node, endNode: Node, delay: number): void => {
+export const dijkstra = (grid: Node[][], startNode: Node, endNode: Node): Node[] => {
   const visitedNodes: Node[] = [];
 
   const unvisitedNodes: Node[] = [];
@@ -25,7 +25,7 @@ export const dijkstra = (grid: Node[][], startNode: Node, endNode: Node, delay: 
     updateUnvisitedNeighbours(closestNode, grid);
   }
 
-  animateDijkstra(grid, visitedNodes, startNode, endNode, delay);
+  return visitedNodes;
 };
 
 // TODO REFACTOR THIS FUNC
@@ -73,7 +73,7 @@ const updateUnvisitedNeighbours = (node: Node, grid: Node[][]): void => {
   }
 };
 
-const getShortestPath = (visitedNodes: Node[]): Node[] => {
+export const getShortestPath = (visitedNodes: Node[]): Node[] => {
   const shortestPath = [];
   let currentNode = visitedNodes.pop();
   while (currentNode !== undefined) {
@@ -84,24 +84,3 @@ const getShortestPath = (visitedNodes: Node[]): Node[] => {
   return shortestPath;
 };
 
-const animateDijkstra = (grid: Node[][], visitedNodes: Node[], startNode: Node, endNode: Node, delay: number): void => {
-  let count = 50;
-  for (const node of visitedNodes){
-    setTimeout(() => {
-      if (node.row === startNode.row && node.col === startNode.col) { return; }
-      if (node.row === endNode.row && node.col === endNode.col) { return; }
-      grid[node.row][node.col].color = 'darkred';
-    }, delay * count);
-    count++;
-  }
-
-  const shortestPath = getShortestPath(visitedNodes);
-  for (const node of shortestPath){
-    setTimeout(() => {
-      if (node.row === startNode.row && node.col === startNode.col) { return; }
-      if (node.row === endNode.row && node.col === endNode.col) { return; }
-      grid[node.row][node.col].color = 'darkcyan';
-    }, delay * count);
-    count++;
-  }
-};
