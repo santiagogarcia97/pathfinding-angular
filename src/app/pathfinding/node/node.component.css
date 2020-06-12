@@ -4,6 +4,6 @@
   -webkit-box-sizing: border-box;
   border: 1px solid;
   display: inline-block;
-  height: 1.5vw;
-  width: 1.5vw;
+  height: calc(80vw / 60);
+  width: calc(80vw / 60);
 }

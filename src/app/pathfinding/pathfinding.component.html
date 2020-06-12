@@ -1,11 +1,13 @@
 <pf-topbar></pf-topbar>
 
-<div class="container">
-
-  <div>
+<div class="menu">
+  <div class="bs-container">
     <button (click)="handleClick()">visualize</button>
     <button (click)="clear()">clear</button>
   </div>
+</div>
+
+<div class="container">
   <div class="row" *ngFor="let row of this.grid ">
 
     <pf-node *ngFor="let node of row" [node]="node"></pf-node>

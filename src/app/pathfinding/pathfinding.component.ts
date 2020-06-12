@@ -9,8 +9,8 @@ import {dijkstra} from './dijkstra';
 })
 export class PathfindingComponent implements OnInit {
 
-  startNode: Node = {row: 12, col: 13};
-  endNode: Node = {row: 16, col: 37};
+  startNode: Node = {row: 8, col: 8};
+  endNode: Node = {row: 25, col: 35};
   delay = 10;
   grid: Node[][];
 
@@ -24,9 +24,9 @@ export class PathfindingComponent implements OnInit {
   clear(): void {
     this.grid = [];
 
-    for (let i = 0; i < 40; i++) {
+    for (let i = 0; i < 30; i++) {
       const row: Node[] = [];
-      for (let j = 0; j < 45; j++) {
+      for (let j = 0; j < 60; j++) {
         row.push({
           row: i,
           col: j,
