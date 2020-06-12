@@ -1,0 +1,18 @@
+nav {
+  width: 100vw;
+  background-color: #323232;
+  font-size: 24px;
+  color: white;
+  padding: 10px 0px;
+}
+
+a {
+  display: flex;
+  align-items: center;
+}
+
+.topbar-flex-container {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}

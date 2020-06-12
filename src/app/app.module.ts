@@ -4,12 +4,14 @@ import { NgModule } from '@angular/core';
 import { AppComponent } from './app.component';
 import { PathfindingComponent } from './pathfinding/pathfinding.component';
 import { NodeComponent } from './pathfinding/node/node.component';
+import { TopbarComponent } from './pathfinding/topbar/topbar.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     PathfindingComponent,
-    NodeComponent
+    NodeComponent,
+    TopbarComponent
   ],
   imports: [
     BrowserModule

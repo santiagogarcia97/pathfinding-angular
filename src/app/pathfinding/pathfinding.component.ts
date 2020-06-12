@@ -24,7 +24,7 @@ export class PathfindingComponent implements OnInit {
   clear(): void {
     this.grid = [];
 
-    for (let i = 0; i < 25; i++) {
+    for (let i = 0; i < 40; i++) {
       const row: Node[] = [];
       for (let j = 0; j < 45; j++) {
         row.push({
