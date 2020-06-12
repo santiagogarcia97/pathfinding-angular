@@ -47,7 +47,7 @@ export class GridService {
   }
 
   visualizeDijkstra(): void {
-    const visitedNodes = dijkstra(this.grid, this.startNode, this.endNode, 10);
+    const visitedNodes = dijkstra(this.grid, this.startNode, this.endNode);
     let count = 50;
     for (const node of visitedNodes){
       setTimeout(() => {

@@ -21,12 +21,4 @@ export class PathfindingComponent implements OnInit {
 
   ngOnInit(): void {
   }
-
-  clear(): void {
-    this.gridService.clear();
-  }
-
-  handleClick(): void {
-    this.gridService.visualizeDijkstra();
-  }
 }
