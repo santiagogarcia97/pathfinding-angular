@@ -3,7 +3,7 @@ import {Node} from './types';
 import {dijkstra} from './dijkstra';
 
 @Component({
-  selector: 'app-pathfinding',
+  selector: 'pf-main',
   templateUrl: './pathfinding.component.html',
   styleUrls: ['./pathfinding.component.css']
 })

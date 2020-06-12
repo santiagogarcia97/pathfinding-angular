@@ -3,11 +3,13 @@ import { NgModule } from '@angular/core';
 
 import { AppComponent } from './app.component';
 import { PathfindingComponent } from './pathfinding/pathfinding.component';
+import { NodeComponent } from './pathfinding/node/node.component';
 
 @NgModule({
   declarations: [
     AppComponent,
-    PathfindingComponent
+    PathfindingComponent,
+    NodeComponent
   ],
   imports: [
     BrowserModule

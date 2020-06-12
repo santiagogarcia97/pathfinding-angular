@@ -1,12 +1,12 @@
 .container  {
+  box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  -webkit-box-sizing: border-box;
   text-align: center;
 }
-.node {
-  border: 1px solid;
-  display: inline-block;
-  height: 1.5vw;
-  width: 1.5vw;
-}
 .row {
+  box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  -webkit-box-sizing: border-box;
   height: 1.5vw;
 }

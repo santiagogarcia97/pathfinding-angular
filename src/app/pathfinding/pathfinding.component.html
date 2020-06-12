@@ -1,10 +1,11 @@
 <div class="container">
+  <div>
+    <button (click)="handleClick()">visualize</button>
+    <button (click)="clear()">clear</button>
+  </div>
   <div class="row" *ngFor="let row of this.grid ">
 
-    <div class="node" *ngFor="let col of row" style="background-color: {{col.color}}">
-    </div>
+    <pf-node *ngFor="let node of row" [node]="node"></pf-node>
 
   </div>
-  <button (click)="handleClick()">visualize</button>
-  <button (click)="clear()">clear</button>
 </div>
