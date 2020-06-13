@@ -2,8 +2,38 @@
   box-sizing: border-box;
   -moz-box-sizing: border-box;
   -webkit-box-sizing: border-box;
-  border: 1px solid;
+  border: 1px solid #007bce;
   display: inline-block;
   height: calc(80vw / 60);
   width: calc(80vw / 60);
 }
+
+.node-visited {
+  animation-name: visitedAnimation;
+  animation-duration: 1.2s;
+  animation-timing-function: ease-out;
+  animation-delay: 0s;
+  animation-direction: alternate;
+  animation-iteration-count: 1;
+  animation-fill-mode: forwards;
+  animation-play-state: running;
+}
+
+@keyframes visitedAnimation {
+  0% {
+    transform: scale(0.3);
+    background-color: #282163;
+    border-radius: 100%;
+  }
+  20% {
+    background-color: #bb56ff;
+  }
+  75% {
+    transform: scale(1.2);
+  }
+  100% {
+    transform: scale(1);
+    background-color: #569aff;
+  }
+}
+

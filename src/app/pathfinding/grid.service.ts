@@ -53,9 +53,9 @@ export class GridService {
       setTimeout(() => {
         if (node.row === this.startNode.row && node.col === this.startNode.col) { return; }
         if (node.row === this.endNode.row && node.col === this.endNode.col) { return; }
-        this.grid[node.row][node.col].color = 'darkred';
+        this.grid[node.row][node.col].color = 'darkgray';
         this.gridChange.next(this.grid);
-      }, 10 * count);
+      }, 20 * count);
       count++;
     }
 
@@ -64,9 +64,9 @@ export class GridService {
       setTimeout(() => {
         if (node.row === this.startNode.row && node.col === this.startNode.col) { return; }
         if (node.row === this.endNode.row && node.col === this.endNode.col) { return; }
-        this.grid[node.row][node.col].color = 'darkcyan';
+        this.grid[node.row][node.col].color = 'MediumSeaGreen';
         this.gridChange.next(this.grid);
-      }, 10 * count);
+      }, 20 * count);
       count++;
     }
   }

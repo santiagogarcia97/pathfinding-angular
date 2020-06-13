@@ -10,9 +10,13 @@ export class NodeComponent implements OnInit {
 
   @Input() node: Node;
 
-  constructor() { }
+  constructor() {
+  }
 
   ngOnInit(): void {
   }
 
+  getClass(): string {
+    return (this.node.color && this.node.color === 'darkgray') ? 'node node-visited' : 'node';
+  }
 }

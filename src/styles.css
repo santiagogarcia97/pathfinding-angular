@@ -2,7 +2,7 @@ html,
 body {
   height: 100%;
   margin: 0;
-  background-color: darkgrey;
+  background-color: white;
   font-family: -apple-system,system-ui,BlinkMacSystemFont,"Segoe UI",Roboto,"Helvetica Neue",Arial,sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
