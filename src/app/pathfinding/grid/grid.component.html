@@ -3,7 +3,6 @@
 
     <div
       *ngFor="let node of row"
-      [style.background-color]="node.color"
       [ngClass]="getClass(node)"
       (mousedown)="onDrag(node)"
     >

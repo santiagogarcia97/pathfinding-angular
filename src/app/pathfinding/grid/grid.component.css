@@ -16,6 +16,7 @@
   box-sizing: border-box;
   -moz-box-sizing: border-box;
   -webkit-box-sizing: border-box;
+  background-color: white;
   border: 1px solid #007bce;
   display: inline-block;
   height: calc(80vw / 60);
@@ -32,7 +33,6 @@
   animation-fill-mode: forwards;
   animation-play-state: running;
 }
-
 @keyframes visitedAnimation {
   0% {
     transform: scale(0.3);
@@ -48,5 +48,105 @@
   100% {
     transform: scale(1);
     background-color: #569aff;
+  }
+}
+
+.node-start {
+  animation-name: startAnimation;
+  animation-duration: 0.5s;
+  animation-timing-function: ease-out;
+  animation-delay: 0s;
+  animation-direction: alternate;
+  animation-iteration-count: 1;
+  animation-fill-mode: forwards;
+  animation-play-state: running;
+}
+@keyframes startAnimation {
+  0% {
+    transform: scale(0.3);
+    background-color: #0bcb00;
+    border-radius: 100%;
+  }
+  75% {
+    transform: scale(1.2);
+  }
+  100% {
+    transform: scale(1);
+    background-color: #115f00;
+  }
+}
+
+.node-end {
+  animation-name: endAnimation;
+  animation-duration: 0.5s;
+  animation-timing-function: ease-out;
+  animation-delay: 0s;
+  animation-direction: alternate;
+  animation-iteration-count: 1;
+  animation-fill-mode: forwards;
+  animation-play-state: running;
+}
+@keyframes endAnimation {
+  0% {
+    transform: scale(0.3);
+    background-color: #0032cb;
+    border-radius: 100%;
+  }
+  75% {
+    transform: scale(1.2);
+  }
+  100% {
+    transform: scale(1);
+    background-color: #000944;
+  }
+}
+
+.node-path {
+  animation-name: pathAnimation;
+  animation-duration: 0.5s;
+  animation-timing-function: ease-out;
+  animation-delay: 0s;
+  animation-direction: alternate;
+  animation-iteration-count: 1;
+  animation-fill-mode: forwards;
+  animation-play-state: running;
+}
+@keyframes pathAnimation {
+  0% {
+    transform: scale(0.3);
+    background-color: #cba900;
+    border-radius: 100%;
+  }
+  75% {
+    transform: scale(1.2);
+  }
+  100% {
+    transform: scale(1);
+    background-color: #7d6b00;
+  }
+}
+
+.node-wall {
+  animation-name: wallAnimation;
+  animation-duration: 0.5s;
+  animation-timing-function: ease-out;
+  animation-delay: 0s;
+  animation-direction: alternate;
+  animation-iteration-count: 1;
+  animation-fill-mode: forwards;
+  animation-play-state: running;
+}
+@keyframes wallAnimation {
+  0% {
+    transform: scale(0.3);
+    background-color: #616161;
+    border-radius: 100%;
+  }
+  75% {
+    transform: scale(1.2);
+  }
+  100% {
+    transform: scale(1);
+    background-color: #000000;
   }
 }

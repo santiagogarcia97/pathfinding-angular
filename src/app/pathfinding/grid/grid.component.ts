@@ -1,5 +1,5 @@
-import { Component, OnInit } from '@angular/core';
-import {Node} from '../types';
+import {Component, OnInit} from '@angular/core';
+import {Animation, Node} from '../types';
 import {GridService} from '../services/grid.service';
 
 @Component({
@@ -22,7 +22,26 @@ export class GridComponent implements OnInit {
   }
 
   getClass(node: Node): string {
-    return (node.color && node.color === 'darkgray') ? 'node node-visited' : 'node';
+    switch (node.animation) {
+      case Animation.Start:
+        return 'node node-start';
+        break;
+      case Animation.End:
+        return 'node node-end';
+        break;
+      case Animation.Visited:
+        return 'node node-visited';
+        break;
+      case Animation.Path:
+        return 'node node-path';
+        break;
+      case Animation.Wall:
+        return 'node node-wall';
+        break;
+      case Animation.Clear:
+      default:
+        return 'node';
+    }
   }
 
   onDrag(node: Node): void {
