@@ -1,0 +1,13 @@
+<div class="container">
+  <div class="row" *ngFor="let row of this.grid ">
+
+    <div
+      *ngFor="let node of row"
+      [style.background-color]="node.color"
+      [ngClass]="getClass(node)"
+      (mousedown)="onDrag(node)"
+    >
+
+    </div>
+  </div>
+</div>

@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import {Subject} from 'rxjs';
-import {Node} from './types';
-import {dijkstra, getShortestPath} from './dijkstra';
+import {Node} from '../types';
+import {dijkstra, getShortestPath} from '../dijkstra';
 
 @Injectable({
   providedIn: 'root'
@@ -19,8 +19,18 @@ export class GridService {
     });
   }
 
-  setGrid(newGridState: Node[][]) {
+  setGrid(newGridState: Node[][]): void {
     this.gridChange.next(newGridState);
+  }
+  setStart(node: Node): void {
+    this.startNode = node;
+    this.grid[this.startNode.row][this.startNode.col].distance = 0;
+    this.grid[this.startNode.row][this.startNode.col].color = 'green';
+    this.grid[this.endNode.row][this.endNode.col].color = 'blue';
+    this.gridChange.next(this.grid);
+  }
+  getStart(): Node {
+    return this.startNode;
   }
 
   clear(): void {
@@ -42,7 +52,6 @@ export class GridService {
     clearGrid[this.startNode.row][this.startNode.col].distance = 0;
     clearGrid[this.startNode.row][this.startNode.col].color = 'green';
     clearGrid[this.endNode.row][this.endNode.col].color = 'blue';
-
     this.gridChange.next(clearGrid);
   }
 

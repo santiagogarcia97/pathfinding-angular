@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import {GridService} from '../grid.service';
+import {GridService} from '../services/grid.service';
 
 @Component({
   selector: 'pf-menu',
