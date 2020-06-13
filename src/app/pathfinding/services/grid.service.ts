@@ -33,6 +33,16 @@ export class GridService {
   getStart(): Node {
     return this.startNode;
   }
+  toggleWall(node: Node): void {
+    if (this.grid[node.row][node.col].animation === Animation.Clear) {
+      this.grid[node.row][node.col].animation = Animation.Wall;
+      this.gridChange.next(this.grid);
+    }
+    else if (this.grid[node.row][node.col].animation === Animation.Wall) {
+      this.grid[node.row][node.col].animation = Animation.Clear;
+      this.gridChange.next(this.grid);
+    }
+  }
 
   clear(): void {
     const clearGrid = [];

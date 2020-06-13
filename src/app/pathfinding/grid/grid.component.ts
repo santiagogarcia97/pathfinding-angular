@@ -44,9 +44,8 @@ export class GridComponent implements OnInit {
     }
   }
 
-  onDrag(node: Node): void {
-    this.gridService.setStart(node);
-    console.log(this.gridService.getStart());
+  onMouseDown(node: Node): void {
+    this.gridService.toggleWall(node);
   }
 
 }

@@ -1,4 +1,4 @@
-import {Node} from './types';
+import {Animation, Node} from './types';
 
 export const dijkstra = (grid: Node[][], startNode: Node, endNode: Node): Node[] => {
   const visitedNodes: Node[] = [];
@@ -16,6 +16,7 @@ export const dijkstra = (grid: Node[][], startNode: Node, endNode: Node): Node[]
     const closestNode = unvisitedNodes.shift();
     // If endNode is unreachable => break
     if (closestNode.distance === Infinity) { break; }
+    if (closestNode.animation === Animation.Wall) { continue; }
 
     closestNode.visited = true;
     visitedNodes.push(closestNode);
