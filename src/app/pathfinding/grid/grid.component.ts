@@ -24,28 +24,47 @@ export class GridComponent implements OnInit {
   getClass(node: Node): string {
     switch (node.animation) {
       case Animation.Start:
-        return 'node node-start';
+        return 'inner node-start';
         break;
       case Animation.End:
-        return 'node node-end';
+        return 'inner node-end';
         break;
       case Animation.Visited:
-        return 'node node-visited';
+        return 'inner node-visited';
         break;
       case Animation.Path:
-        return 'node node-path';
+        return 'inner node-path';
         break;
       case Animation.Wall:
-        return 'node node-wall';
+        return 'inner node-wall';
         break;
       case Animation.Clear:
       default:
-        return 'node';
+        return 'inner';
     }
   }
 
-  onMouseDown(node: Node): void {
-    this.gridService.toggleWall(node);
+  onMouseUp(): void {
+    console.log('up');
+    this.gridService.setMouseDown(false);
+  }
+
+  onMouseEnter(node: Node, event: MouseEvent): void {
+    event.preventDefault();
+    event.stopPropagation();
+    console.log('enter');
+    if (this.gridService.getMouseDown()) {
+      this.gridService.changeNode(node);
+    }
+  }
+
+  onMouseDown(node: Node, event: MouseEvent): void {
+    event.preventDefault();
+    event.stopPropagation();
+    console.log('down');
+    this.gridService.setMouseDown(true);
+    this.gridService.setMouseDrag(node.animation);
+    this.gridService.changeNode(node);
   }
 
 }

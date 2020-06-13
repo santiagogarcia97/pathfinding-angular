@@ -1,12 +1,17 @@
-<div class="container">
+<div class="container"
+  (mouseup)="onMouseUp()"
+  (mouseleave)="onMouseUp()"
+>
+
   <div class="row" *ngFor="let row of this.grid ">
 
     <div
       *ngFor="let node of row"
-      [ngClass]="getClass(node)"
-      (mousedown)="onMouseDown(node)"
+      class="node"
+      (mousedown)="onMouseDown(node, $event)"
+      (mouseenter)="onMouseEnter(node, $event)"
     >
-
+      <div [ngClass]="getClass(node)"></div>
     </div>
   </div>
 </div>

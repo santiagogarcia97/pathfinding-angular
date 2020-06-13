@@ -22,6 +22,10 @@
   height: calc(80vw / 60);
   width: calc(80vw / 60);
 }
+.inner {
+  height: 100%;
+  width: 100%;
+}
 
 .node-visited {
   animation-name: visitedAnimation;
@@ -63,7 +67,7 @@
 }
 @keyframes startAnimation {
   0% {
-    transform: scale(0.3);
+    transform: scale(0.5);
     background-color: #0bcb00;
     border-radius: 100%;
   }
@@ -88,8 +92,8 @@
 }
 @keyframes endAnimation {
   0% {
-    transform: scale(0.3);
-    background-color: #0032cb;
+    transform: scale(0.5);
+    background-color: #003fff;
     border-radius: 100%;
   }
   75% {
@@ -97,7 +101,7 @@
   }
   100% {
     transform: scale(1);
-    background-color: #000944;
+    background-color: #0014ba;
   }
 }
 

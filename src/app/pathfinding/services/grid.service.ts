@@ -8,15 +8,39 @@ import {dijkstra, getShortestPath} from '../dijkstra';
 })
 export class GridService {
 
-  startNode: Node = {row: 8, col: 8, animation: Animation.Start};
-  endNode: Node = {row: 25, col: 35, animation: Animation.End};
-  grid: Node[][] = [];
-  gridChange: Subject<Node[][]> = new Subject<Node[][]>();
+  private MouseDown = false;
+  private MouseDrag =  Animation.Clear;
+
+  private startNode: Node = {row: 8, col: 8, animation: Animation.Start};
+  private endNode: Node = {row: 25, col: 35, animation: Animation.End};
+  private grid: Node[][] = [];
+  public gridChange: Subject<Node[][]> = new Subject<Node[][]>();
 
   constructor() {
     this.gridChange.subscribe((value) => {
       this.grid = value;
     });
+  }
+  setMouseDown(bool: boolean): void {
+    this.MouseDown =  bool;
+  }
+  getMouseDown(): boolean {
+    return this.MouseDown;
+  }
+  setMouseDrag(animation: Animation): void {
+    this.MouseDrag = animation;
+  }
+
+  changeNode(node: Node): void {
+    if (this.MouseDrag === Animation.Start) {
+      this.setStart(node);
+    }
+    if (this.MouseDrag === Animation.End) {
+      this.setEnd(node);
+    }
+    else {
+      this.toggleWall(node);
+    }
   }
 
   setGrid(newGridState: Node[][]): void {
@@ -28,6 +52,13 @@ export class GridService {
     this.startNode = node;
     this.grid[this.startNode.row][this.startNode.col].distance = 0;
     this.grid[this.startNode.row][this.startNode.col].animation = Animation.Start;
+    this.gridChange.next(this.grid);
+  }
+  setEnd(node: Node): void {
+    this.grid[this.endNode.row][this.endNode.col].animation = Animation.Clear;
+    this.endNode = node;
+    this.grid[this.endNode.row][this.endNode.col].animation = Animation.End;
+    this.gridChange.next(this.grid);
     this.gridChange.next(this.grid);
   }
   getStart(): Node {
