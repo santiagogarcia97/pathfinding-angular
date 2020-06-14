@@ -8,11 +8,13 @@ import {dijkstra, getShortestPath} from '../dijkstra';
 })
 export class GridService {
 
+  readonly ROWS = 30;
+  readonly COLUMNS = 60;
   private MouseDown = false;
   private MouseDrag =  Animation.Clear;
 
-  private startNode: Node = {row: 8, col: 8, animation: Animation.Start};
-  private endNode: Node = {row: 25, col: 35, animation: Animation.End};
+  private startNode: Node = {row: 15, col: 20, animation: Animation.Start};
+  private endNode: Node = {row: 15, col: 40, animation: Animation.End};
   private grid: Node[][] = [];
   public gridChange: Subject<Node[][]> = new Subject<Node[][]>();
 
@@ -43,9 +45,6 @@ export class GridService {
     }
   }
 
-  setGrid(newGridState: Node[][]): void {
-    this.gridChange.next(newGridState);
-  }
   setStart(node: Node): void {
     this.grid[this.startNode.row][this.startNode.col].distance = Infinity;
     this.grid[this.startNode.row][this.startNode.col].animation = Animation.Clear;
@@ -61,9 +60,7 @@ export class GridService {
     this.gridChange.next(this.grid);
     this.gridChange.next(this.grid);
   }
-  getStart(): Node {
-    return this.startNode;
-  }
+
   toggleWall(node: Node): void {
     if (this.grid[node.row][node.col].animation === Animation.Clear) {
       this.grid[node.row][node.col].animation = Animation.Wall;
@@ -77,9 +74,9 @@ export class GridService {
 
   clear(): void {
     const clearGrid = [];
-    for (let i = 0; i < 30; i++) {
+    for (let i = 0; i < this.ROWS; i++) {
       const row: Node[] = [];
-      for (let j = 0; j < 60; j++) {
+      for (let j = 0; j < this.COLUMNS; j++) {
         row.push({
           row: i,
           col: j,

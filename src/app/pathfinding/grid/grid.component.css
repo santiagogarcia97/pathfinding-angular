@@ -40,18 +40,18 @@
 @keyframes visitedAnimation {
   0% {
     transform: scale(0.3);
-    background-color: #282163;
+    background-color: #002b32;
     border-radius: 100%;
   }
-  20% {
-    background-color: #bb56ff;
+  10% {
+    background-color: #00b4d9;
   }
-  75% {
+  50% {
     transform: scale(1.2);
   }
   100% {
     transform: scale(1);
-    background-color: #569aff;
+    background-color: #008fd9;
   }
 }
 
@@ -68,7 +68,7 @@
 @keyframes startAnimation {
   0% {
     transform: scale(0.5);
-    background-color: #0bcb00;
+    background-color: #cb0000;
     border-radius: 100%;
   }
   75% {
@@ -76,7 +76,7 @@
   }
   100% {
     transform: scale(1);
-    background-color: #115f00;
+    background-color: #cb0000;
   }
 }
 
@@ -93,7 +93,7 @@
 @keyframes endAnimation {
   0% {
     transform: scale(0.5);
-    background-color: #003fff;
+    background-color: #00ff5a;
     border-radius: 100%;
   }
   75% {
@@ -101,13 +101,13 @@
   }
   100% {
     transform: scale(1);
-    background-color: #0014ba;
+    background-color: #00cb48;
   }
 }
 
 .node-path {
   animation-name: pathAnimation;
-  animation-duration: 0.5s;
+  animation-duration: 1.2s;
   animation-timing-function: ease-out;
   animation-delay: 0s;
   animation-direction: alternate;
@@ -118,7 +118,7 @@
 @keyframes pathAnimation {
   0% {
     transform: scale(0.3);
-    background-color: #cba900;
+    background-color: #ff9b1a;
     border-radius: 100%;
   }
   75% {
@@ -126,7 +126,7 @@
   }
   100% {
     transform: scale(1);
-    background-color: #7d6b00;
+    background-color: #e18917;
   }
 }
 
@@ -143,7 +143,7 @@
 @keyframes wallAnimation {
   0% {
     transform: scale(0.3);
-    background-color: #616161;
+    background-color: #ffffff;
     border-radius: 100%;
   }
   75% {
@@ -151,6 +151,6 @@
   }
   100% {
     transform: scale(1);
-    background-color: #000000;
+    background-color: #3c3c3c;
   }
 }

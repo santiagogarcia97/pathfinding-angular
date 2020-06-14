@@ -1,3 +1,41 @@
 .menu {
-  margin: 10px 0px;
+  display: flex;
+}
+
+.form-group {
+  display: flex;
+  flex-direction: column;
+  padding: 10px 5px;
+}
+
+label {
+  padding-bottom: 3px;
+  font-weight: bold;
+}
+select {
+  padding: 5px;
+  border-radius: 5px;
+}
+button {
+  flex: 1 0;
+  border: none;
+  color: white;
+  border-radius: 5px;
+  text-align: center;
+  text-decoration: none;
+  font-size: 16px;
+}
+
+.btn-clear {
+  background-color: #aa0000;
+}
+.btn-find {
+  background-color: #1d7200;
+}
+
+.divider {
+  margin: 0px 5px;
+  background-color: #636363;
+  width: 2px;
+  height: 100%;
 }
