@@ -1,5 +1,6 @@
 .menu {
   display: flex;
+  flex: 0 1;
 }
 
 .form-group {

@@ -1,24 +1,20 @@
-.container  {
-  box-sizing: border-box;
-  -moz-box-sizing: border-box;
-  -webkit-box-sizing: border-box;
-  text-align: center;
-  width: 100vw;
+.grid-flex-container  {
+  flex: 1 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
 }
 .row {
-  box-sizing: border-box;
-  -moz-box-sizing: border-box;
-  -webkit-box-sizing: border-box;
   height: calc(80vw / 60);
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
 }
 
 .node {
   box-sizing: border-box;
-  -moz-box-sizing: border-box;
-  -webkit-box-sizing: border-box;
   background-color: white;
   border: 1px solid #007bce;
-  display: inline-block;
   height: calc(80vw / 60);
   width: calc(80vw / 60);
 }
@@ -27,6 +23,9 @@
   width: 100%;
 }
 
+
+
+/* VISITED */
 .node-visited {
   animation-name: visitedAnimation;
   animation-duration: 1.2s;
@@ -55,6 +54,7 @@
   }
 }
 
+/* START */
 .node-start {
   animation-name: startAnimation;
   animation-duration: 0.5s;
@@ -80,6 +80,7 @@
   }
 }
 
+/* END */
 .node-end {
   animation-name: endAnimation;
   animation-duration: 0.5s;
@@ -105,6 +106,7 @@
   }
 }
 
+/* PATH */
 .node-path {
   animation-name: pathAnimation;
   animation-duration: 1.2s;
@@ -117,19 +119,21 @@
 }
 @keyframes pathAnimation {
   0% {
-    transform: scale(0.3);
+    transform: scale(1.3);
     background-color: #ff9b1a;
-    border-radius: 100%;
+    border-radius: 90%;
   }
   75% {
-    transform: scale(1.2);
+    transform: scale(0.8);
   }
   100% {
     transform: scale(1);
     background-color: #e18917;
+    border-radius: 0%;
   }
 }
 
+/* WALL */
 .node-wall {
   animation-name: wallAnimation;
   animation-duration: 0.5s;

@@ -104,7 +104,6 @@ export class GridService {
       }, 20 * count);
       count++;
     }
-
     const shortestPath = getShortestPath(visitedNodes);
     for (const node of shortestPath){
       setTimeout(() => {

@@ -45,14 +45,12 @@ export class GridComponent implements OnInit {
   }
 
   onMouseUp(): void {
-    console.log('up');
     this.gridService.setMouseDown(false);
   }
 
   onMouseEnter(node: Node, event: MouseEvent): void {
     event.preventDefault();
     event.stopPropagation();
-    console.log('enter');
     if (this.gridService.getMouseDown()) {
       this.gridService.changeNode(node);
     }
@@ -61,7 +59,6 @@ export class GridComponent implements OnInit {
   onMouseDown(node: Node, event: MouseEvent): void {
     event.preventDefault();
     event.stopPropagation();
-    console.log('down');
     this.gridService.setMouseDown(true);
     this.gridService.setMouseDrag(node.animation);
     this.gridService.changeNode(node);
