@@ -8,7 +8,12 @@ import {GridService} from '../services/grid.service';
 })
 export class MenuComponent implements OnInit {
 
-  constructor(private gridService: GridService) { }
+  menuLocked = false;
+  constructor(private gridService: GridService) {
+    this.gridService.menuLockedChange.subscribe((value) => {
+      this.menuLocked = value;
+    });
+  }
 
   ngOnInit(): void {
   }
@@ -18,6 +23,7 @@ export class MenuComponent implements OnInit {
   }
 
   handleClick(): void {
+    this.gridService.setMenuLocked(true);
     this.gridService.visualizeDijkstra();
   }
 }

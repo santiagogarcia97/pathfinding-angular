@@ -10,6 +10,7 @@ export class GridService {
 
   readonly ROWS = 30;
   readonly COLUMNS = 60;
+  private menuLocked = false;
   private MouseDown = false;
   private MouseDrag =  Animation.Clear;
 
@@ -17,10 +18,14 @@ export class GridService {
   private endNode: Node = {row: 15, col: 40, animation: Animation.End};
   private grid: Node[][] = [];
   public gridChange: Subject<Node[][]> = new Subject<Node[][]>();
+  public menuLockedChange: Subject<boolean> = new Subject<boolean>();
 
   constructor() {
     this.gridChange.subscribe((value) => {
       this.grid = value;
+    });
+    this.menuLockedChange.subscribe((value) => {
+      this.menuLocked = value;
     });
   }
   setMouseDown(bool: boolean): void {
@@ -33,6 +38,9 @@ export class GridService {
     this.MouseDrag = animation;
   }
 
+  setMenuLocked(bool: boolean): void {
+    this.menuLockedChange.next(bool);
+  }
   changeNode(node: Node): void {
     if (this.MouseDrag === Animation.Start) {
       this.setStart(node);
@@ -112,6 +120,9 @@ export class GridService {
         this.gridChange.next(this.grid);
       }, 20 * count);
       count++;
+      setTimeout(() => {
+        this.menuLockedChange.next(false);
+      }, 20 * count);
     }
   }
 }

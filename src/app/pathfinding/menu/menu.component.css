@@ -40,3 +40,8 @@ button {
   width: 2px;
   height: 100%;
 }
+
+.disabled {
+  opacity: 0.7;
+  pointer-events: none;
+}
