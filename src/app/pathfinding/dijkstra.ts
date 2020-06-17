@@ -6,6 +6,7 @@ export const dijkstra = (grid: Node[][], startNode: Node, endNode: Node): Node[]
   const unvisitedNodes: Node[] = [];
   for (const row of grid){
     for (const node of row){
+      node.distance = (node.row === startNode.row && node.col === startNode.col) ? 0 : Infinity;
       unvisitedNodes.push(node);
     }
   }
@@ -53,7 +54,7 @@ const sortUnvisited = (unvisitedNodes: Node[], startNode: Node): void => {
 };
 
 const updateUnvisitedNeighbours = (node: Node, grid: Node[][]): void => {
-  const unvisitedNeighbours = [];
+  const unvisitedNeighbours: Node[] = [];
   const { col, row } = node;
 
   if (col > 0 && !grid[row][col - 1].visited )
@@ -69,7 +70,7 @@ const updateUnvisitedNeighbours = (node: Node, grid: Node[][]): void => {
     { unvisitedNeighbours.push(grid[row + 1][col]); }
 
   for (const neighbour of unvisitedNeighbours) {
-    neighbour.distance = node.distance + 1;
+    neighbour.distance = node.distance + neighbour.weight;
     neighbour.previousNode = node;
   }
 };

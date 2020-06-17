@@ -1,6 +1,6 @@
 import {Injectable} from '@angular/core';
 import {Subject} from 'rxjs';
-import {Animation, Node} from '../types';
+import {Animation, GridType, Node} from '../types';
 import {dijkstra, getShortestPath} from '../dijkstra';
 
 @Injectable({
@@ -80,7 +80,7 @@ export class GridService {
     }
   }
 
-  clear(): void {
+  newGrid(type: GridType): void {
     const clearGrid = [];
     for (let i = 0; i < this.ROWS; i++) {
       const row: Node[] = [];
@@ -89,16 +89,15 @@ export class GridService {
           row: i,
           col: j,
           animation: Animation.Clear,
-          distance: Infinity,
-          visited: false
+          weight: type === 'Weighted' ? Math.ceil(Math.random() * 5) : 1
         });
       }
       clearGrid.push(row);
     }
-    clearGrid[this.startNode.row][this.startNode.col].distance = 0;
     clearGrid[this.startNode.row][this.startNode.col].animation = Animation.Start;
     clearGrid[this.endNode.row][this.endNode.col].animation = Animation.End;
     this.gridChange.next(clearGrid);
+    console.log(this.grid);
   }
 
   visualizeDijkstra(): void {

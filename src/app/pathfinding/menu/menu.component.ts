@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import {GridService} from '../services/grid.service';
+import {GridType} from '../types';
 
 @Component({
   selector: 'pf-menu',
@@ -8,7 +9,9 @@ import {GridService} from '../services/grid.service';
 })
 export class MenuComponent implements OnInit {
 
+  gridTypeSelect = GridType.Unweighted;
   menuLocked = false;
+
   constructor(private gridService: GridService) {
     this.gridService.menuLockedChange.subscribe((value) => {
       this.menuLocked = value;
@@ -18,8 +21,9 @@ export class MenuComponent implements OnInit {
   ngOnInit(): void {
   }
 
-  clear(): void {
-    this.gridService.clear();
+  newGrid(): void {
+    console.log(this.gridTypeSelect);
+    this.gridService.newGrid(this.gridTypeSelect);
   }
 
   handleClick(): void {

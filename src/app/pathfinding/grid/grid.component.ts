@@ -1,5 +1,5 @@
 import {Component, OnInit} from '@angular/core';
-import {Animation, Node} from '../types';
+import {Animation, GridType, Node} from '../types';
 import {GridService} from '../services/grid.service';
 
 @Component({
@@ -15,7 +15,7 @@ export class GridComponent implements OnInit {
     this.gridService.gridChange.subscribe((value) => {
       this.grid = value;
     });
-    gridService.clear();
+    gridService.newGrid(GridType.Unweighted);
   }
 
   ngOnInit(): void {

@@ -5,7 +5,8 @@
       <label>Algorithm</label>
       <select>
         <option>Dijkstra's</option>
-        <option>A* (not implemented)</option>
+        <option>A*</option>
+        <option>BFS</option>
       </select>
     </div>
 
@@ -23,24 +24,20 @@
     </div>
 
     <div class="form-group">
-      <button (click)="clear()" class="btn-clear">Clear grid</button>
-    </div>
-
-    <div class="form-group">
       <div class="divider">
       </div>
     </div>
 
     <div class="form-group">
       <label>Grid type</label>
-      <select>
-        <option>Weighted</option>
-        <option>Unweighted</option>
+      <select [(ngModel)]="gridTypeSelect" >
+        <option [value]="'Unweighted'">Unweighted</option>
+        <option [value]="'Weighted'">Weighted</option>
       </select>
     </div>
 
     <div class="form-group">
-      <button class="btn-clear">New grid</button>
+      <button class="btn-clear" (click)="newGrid()">New grid</button>
     </div>
 
   </div>
