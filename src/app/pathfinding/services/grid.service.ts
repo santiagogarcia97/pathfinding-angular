@@ -11,6 +11,7 @@ export class GridService {
   readonly ROWS = 30;
   readonly COLUMNS = 60;
   private menuLocked = false;
+  private gridLocked = false;
   private MouseDown = false;
   private MouseDrag =  Animation.Clear;
 
@@ -28,6 +29,8 @@ export class GridService {
       this.menuLocked = value;
     });
   }
+
+
   setMouseDown(bool: boolean): void {
     this.MouseDown =  bool;
   }
@@ -40,6 +43,13 @@ export class GridService {
 
   setMenuLocked(bool: boolean): void {
     this.menuLockedChange.next(bool);
+  }
+
+  setGridLocked(bool: boolean): void {
+    this.gridLocked = bool;
+  }
+  getGridLocked(): boolean {
+    return this.gridLocked;
   }
   changeNode(node: Node): void {
     if (this.MouseDrag === Animation.Start) {

@@ -20,11 +20,7 @@
     </div>
 
     <div class="form-group">
-      <button (click)="handleClick()" class="btn-find">Find path!</button>
-    </div>
-
-    <div class="form-group">
-      <button (click)="handleReset()" class="btn-find">Reset</button>
+      <button (click)="handleClick()" [className]="buttonCss">{{buttonText}}</button>
     </div>
 
     <div class="form-group">

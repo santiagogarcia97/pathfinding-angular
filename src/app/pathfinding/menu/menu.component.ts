@@ -9,6 +9,8 @@ import {GridType} from '../types';
 })
 export class MenuComponent implements OnInit {
 
+  buttonText = 'Find Path!';
+  buttonCss = 'btn-find';
   gridTypeSelect = GridType.Unweighted;
   menuLocked = false;
 
@@ -26,12 +28,19 @@ export class MenuComponent implements OnInit {
     this.gridService.newGrid(this.gridTypeSelect);
   }
 
-  handleReset(): void {
-    this.gridService.resetGrid();
-  }
-
   handleClick(): void {
-    this.gridService.setMenuLocked(true);
-    this.gridService.visualizeDijkstra();
+    if (this.gridService.getGridLocked()) {
+      this.buttonText = 'Find path!';
+      this.buttonCss = 'btn-find';
+      this.gridService.setGridLocked(false);
+      this.gridService.resetGrid();
+    }
+    else {
+      this.buttonText = 'Reset';
+      this.buttonCss = 'btn-reset';
+      this.gridService.setGridLocked(true);
+      this.gridService.setMenuLocked(true);
+      this.gridService.visualizeDijkstra();
+    }
   }
 }

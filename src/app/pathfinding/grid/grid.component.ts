@@ -51,6 +51,7 @@ export class GridComponent implements OnInit {
   onMouseEnter(node: Node, event: MouseEvent): void {
     event.preventDefault();
     event.stopPropagation();
+    if (this.gridService.getGridLocked()) { return; }
     if (this.gridService.getMouseDown()) {
       this.gridService.changeNode(node);
     }
@@ -59,6 +60,7 @@ export class GridComponent implements OnInit {
   onMouseDown(node: Node, event: MouseEvent): void {
     event.preventDefault();
     event.stopPropagation();
+    if (this.gridService.getGridLocked()) { return; }
     this.gridService.setMouseDown(true);
     this.gridService.setMouseDrag(node.animation);
     this.gridService.changeNode(node);

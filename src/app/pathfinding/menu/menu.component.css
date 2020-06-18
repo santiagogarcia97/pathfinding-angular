@@ -34,6 +34,9 @@ button {
 .btn-find {
   background-color: #1d7200;
 }
+.btn-reset {
+  background-color: #aa0000;
+}
 
 .divider {
   margin: 0px 5px;

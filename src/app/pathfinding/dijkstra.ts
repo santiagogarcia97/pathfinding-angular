@@ -34,6 +34,8 @@ export const dijkstra = (grid: Node[][], startNode: Node, endNode: Node): Node[]
 const sortUnvisited = (unvisitedNodes: Node[], startNode: Node): void => {
   unvisitedNodes.sort((nodeA, nodeB) => {
     if (nodeA.distance === nodeB.distance){
+      if (nodeA.animation === Animation.End) { return -1; }
+      if (nodeB.animation === Animation.End) { return 1; }
       let nodeAQuadrant = 0;
       let nodeBQuadrant = 0;
 
