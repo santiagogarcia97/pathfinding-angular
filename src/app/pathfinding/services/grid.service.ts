@@ -54,19 +54,16 @@ export class GridService {
   }
 
   setStart(node: Node): void {
-    this.grid[this.startNode.row][this.startNode.col].distance = Infinity;
+    if (node.row === this.endNode.row && node.col === this.endNode.col) { return; }
     this.grid[this.startNode.row][this.startNode.col].animation = Animation.Clear;
     this.startNode = node;
-    this.grid[this.startNode.row][this.startNode.col].distance = 0;
-    this.grid[this.startNode.row][this.startNode.col].animation = Animation.Start;
-    this.gridChange.next(this.grid);
+    this.animateStartEndNodes();
   }
   setEnd(node: Node): void {
+    if (node.row === this.startNode.row && node.col === this.startNode.col) { return; }
     this.grid[this.endNode.row][this.endNode.col].animation = Animation.Clear;
     this.endNode = node;
-    this.grid[this.endNode.row][this.endNode.col].animation = Animation.End;
-    this.gridChange.next(this.grid);
-    this.gridChange.next(this.grid);
+    this.animateStartEndNodes();
   }
 
   toggleWall(node: Node): void {
@@ -78,6 +75,12 @@ export class GridService {
       this.grid[node.row][node.col].animation = Animation.Clear;
       this.gridChange.next(this.grid);
     }
+  }
+
+  animateStartEndNodes(): void {
+    this.grid[this.endNode.row][this.endNode.col].animation = Animation.End;
+    this.grid[this.startNode.row][this.startNode.col].animation = Animation.Start;
+    this.gridChange.next(this.grid);
   }
 
   newGrid(type: GridType): void {
@@ -94,10 +97,9 @@ export class GridService {
       }
       clearGrid.push(row);
     }
-    clearGrid[this.startNode.row][this.startNode.col].animation = Animation.Start;
-    clearGrid[this.endNode.row][this.endNode.col].animation = Animation.End;
     this.gridChange.next(clearGrid);
-    console.log(this.grid);
+
+    this.animateStartEndNodes();
   }
 
   visualizeDijkstra(): void {
