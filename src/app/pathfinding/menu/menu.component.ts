@@ -26,6 +26,10 @@ export class MenuComponent implements OnInit {
     this.gridService.newGrid(this.gridTypeSelect);
   }
 
+  handleReset(): void {
+    this.gridService.resetGrid();
+  }
+
   handleClick(): void {
     this.gridService.setMenuLocked(true);
     this.gridService.visualizeDijkstra();

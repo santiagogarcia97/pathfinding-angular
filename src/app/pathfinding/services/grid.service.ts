@@ -83,6 +83,18 @@ export class GridService {
     this.gridChange.next(this.grid);
   }
 
+  resetGrid(): void {
+    this.grid.forEach((row) => {
+      row.forEach((node) => {
+        if (node.animation === Animation.Visited || node.animation === Animation.Path)
+          {node.animation = Animation.Clear; }
+        node.distance = undefined;
+        node.previousNode = undefined;
+        node.visited = undefined;
+      });
+    });
+  }
+
   newGrid(type: GridType): void {
     const clearGrid = [];
     for (let i = 0; i < this.ROWS; i++) {
