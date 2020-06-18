@@ -12,6 +12,7 @@ export class MenuComponent implements OnInit {
   buttonText = 'Find Path!';
   buttonCss = 'btn-find';
   gridTypeSelect = GridType.Unweighted;
+  delay = '20';
   menuLocked = false;
 
   constructor(private gridService: GridService) {
@@ -24,7 +25,9 @@ export class MenuComponent implements OnInit {
   }
 
   newGrid(): void {
-    console.log(this.gridTypeSelect);
+    this.buttonText = 'Find path!';
+    this.buttonCss = 'btn-find';
+    this.gridService.setGridLocked(false);
     this.gridService.newGrid(this.gridTypeSelect);
   }
 
@@ -40,7 +43,7 @@ export class MenuComponent implements OnInit {
       this.buttonCss = 'btn-reset';
       this.gridService.setGridLocked(true);
       this.gridService.setMenuLocked(true);
-      this.gridService.visualizeDijkstra();
+      this.gridService.visualizeDijkstra(parseInt(this.delay, 10));
     }
   }
 }

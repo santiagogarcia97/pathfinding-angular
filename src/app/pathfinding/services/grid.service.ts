@@ -124,15 +124,15 @@ export class GridService {
     this.animateStartEndNodes();
   }
 
-  visualizeDijkstra(): void {
+  visualizeDijkstra(delay: number): void {
     const visitedNodes = dijkstra(this.grid, this.startNode, this.endNode);
-    let count = 50;
+    let count = 1;
     for (const node of visitedNodes){
       setTimeout(() => {
         if (node.animation === Animation.Start || node.animation === Animation.End) { return; }
         this.grid[node.row][node.col].animation = Animation.Visited;
         this.gridChange.next(this.grid);
-      }, 20 * count);
+      }, delay * count);
       count++;
     }
     const shortestPath = getShortestPath(visitedNodes);
@@ -141,11 +141,11 @@ export class GridService {
         if (node.animation === Animation.Start || node.animation === Animation.End) { return; }
         this.grid[node.row][node.col].animation = Animation.Path;
         this.gridChange.next(this.grid);
-      }, 20 * count);
+      }, delay * count);
       count++;
       setTimeout(() => {
         this.menuLockedChange.next(false);
-      }, 20 * count);
+      }, delay * count);
     }
   }
 }
