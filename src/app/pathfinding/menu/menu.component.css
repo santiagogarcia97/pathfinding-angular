@@ -1,7 +1,7 @@
 .menu {
   display: flex;
-  flex: 0 1;
   justify-content: center;
+  flex-wrap: wrap;
 }
 
 .form-group {
@@ -24,6 +24,7 @@ button {
   border: none;
   color: white;
   width: 100px;
+  height: 31px;
   border-radius: 5px;
   text-align: center;
   text-decoration: none;

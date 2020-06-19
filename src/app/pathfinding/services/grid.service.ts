@@ -8,7 +8,7 @@ import {dijkstra, getShortestPath} from '../dijkstra';
 })
 export class GridService {
 
-  readonly ROWS = 30;
+  readonly ROWS = 25;
   readonly COLUMNS = 60;
   private menuLocked = false;
   private gridLocked = false;
