@@ -8,6 +8,7 @@
     <div
       *ngFor="let node of row"
       class="node"
+      [ngStyle]="getBackground(node)"
       (mousedown)="onMouseDown(node, $event)"
       (mouseenter)="onMouseEnter(node, $event)"
     >
