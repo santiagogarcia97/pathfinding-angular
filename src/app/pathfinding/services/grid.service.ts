@@ -141,6 +141,7 @@ export class GridService {
         if (node.animation === Animation.Start || node.animation === Animation.End) { return; }
         this.grid[node.row][node.col].animation = Animation.Path;
         this.gridChange.next(this.grid);
+        count++;
       }, delay * count);
       count++;
       setTimeout(() => {
