@@ -125,6 +125,7 @@ export class GridService {
   }
 
   visualizeDijkstra(delay: number): void {
+
     const visitedNodes = dijkstra(this.grid, this.startNode, this.endNode);
     let count = 1;
     for (const node of visitedNodes){
@@ -132,21 +133,20 @@ export class GridService {
         if (node.animation === Animation.Start || node.animation === Animation.End) { return; }
         this.grid[node.row][node.col].animation = Animation.Visited;
         this.gridChange.next(this.grid);
-      }, delay * count);
-      count++;
+      }, delay * count++);
     }
+
     const shortestPath = getShortestPath(visitedNodes);
     for (const node of shortestPath){
       setTimeout(() => {
         if (node.animation === Animation.Start || node.animation === Animation.End) { return; }
         this.grid[node.row][node.col].animation = Animation.Path;
         this.gridChange.next(this.grid);
-        count++;
-      }, delay * count);
-      count++;
-      setTimeout(() => {
-        this.menuLockedChange.next(false);
-      }, delay * count);
+      }, delay * count++);
     }
+
+    setTimeout(() => {
+      this.menuLockedChange.next(false);
+    }, delay * count++);
   }
 }
