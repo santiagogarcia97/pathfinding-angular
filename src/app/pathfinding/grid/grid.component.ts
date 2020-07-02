@@ -1,5 +1,5 @@
 import {Component, OnInit} from '@angular/core';
-import {Animation, GridType, Node} from '../types';
+import {NodeTypes, GridType, Node} from '../types';
 import {GridService} from '../services/grid.service';
 
 @Component({
@@ -22,18 +22,18 @@ export class GridComponent implements OnInit {
   }
 
   getClass(node: Node): string {
-    switch (node.animation) {
-      case Animation.Start:
+    switch (node.type) {
+      case NodeTypes.Start:
         return 'inner node-start'; break;
-      case Animation.End:
+      case NodeTypes.End:
         return 'inner node-end'; break;
-      case Animation.Visited:
+      case NodeTypes.Visited:
         return 'inner node-visited'; break;
-      case Animation.Path:
+      case NodeTypes.Path:
         return 'inner node-path'; break;
-      case Animation.Wall:
+      case NodeTypes.Wall:
         return 'inner node-wall'; break;
-      case Animation.Clear:
+      case NodeTypes.Clear:
       default:
         return 'inner';
     }
@@ -72,7 +72,7 @@ export class GridComponent implements OnInit {
     event.stopPropagation();
     if (this.gridService.getGridLocked()) { return; }
     this.gridService.setMouseDown(true);
-    this.gridService.setMouseDrag(node.animation);
+    this.gridService.setMouseDrag(node.type);
     this.gridService.changeNode(node);
   }
 

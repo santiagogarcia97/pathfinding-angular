@@ -1,6 +1,6 @@
 import {Injectable} from '@angular/core';
 import {Subject} from 'rxjs';
-import {Animation, GridType, Node} from '../types';
+import {NodeTypes, GridType, Node} from '../types';
 import {dijkstra, getShortestPath} from '../dijkstra';
 
 @Injectable({
@@ -13,10 +13,10 @@ export class GridService {
   private menuLocked = false;
   private gridLocked = false;
   private MouseDown = false;
-  private MouseDrag =  Animation.Clear;
+  private MouseDrag =  NodeTypes.Clear;
 
-  private startNode: Node = {row: 15, col: 20, animation: Animation.Start};
-  private endNode: Node = {row: 15, col: 40, animation: Animation.End};
+  private startNode: Node = {row: 12, col: 20, type: NodeTypes.Start};
+  private endNode: Node = {row: 12, col: 40, type: NodeTypes.End};
   private grid: Node[][] = [];
   public gridChange: Subject<Node[][]> = new Subject<Node[][]>();
   public menuLockedChange: Subject<boolean> = new Subject<boolean>();
@@ -37,8 +37,8 @@ export class GridService {
   getMouseDown(): boolean {
     return this.MouseDown;
   }
-  setMouseDrag(animation: Animation): void {
-    this.MouseDrag = animation;
+  setMouseDrag(type: NodeTypes): void {
+    this.MouseDrag = type;
   }
 
   setMenuLocked(bool: boolean): void {
@@ -52,10 +52,10 @@ export class GridService {
     return this.gridLocked;
   }
   changeNode(node: Node): void {
-    if (this.MouseDrag === Animation.Start) {
+    if (this.MouseDrag === NodeTypes.Start) {
       this.setStart(node);
     }
-    if (this.MouseDrag === Animation.End) {
+    if (this.MouseDrag === NodeTypes.End) {
       this.setEnd(node);
     }
     else {
@@ -65,39 +65,39 @@ export class GridService {
 
   setStart(node: Node): void {
     if (node.row === this.endNode.row && node.col === this.endNode.col) { return; }
-    this.grid[this.startNode.row][this.startNode.col].animation = Animation.Clear;
+    this.grid[this.startNode.row][this.startNode.col].type = NodeTypes.Clear;
     this.startNode = node;
     this.animateStartEndNodes();
   }
   setEnd(node: Node): void {
     if (node.row === this.startNode.row && node.col === this.startNode.col) { return; }
-    this.grid[this.endNode.row][this.endNode.col].animation = Animation.Clear;
+    this.grid[this.endNode.row][this.endNode.col].type = NodeTypes.Clear;
     this.endNode = node;
     this.animateStartEndNodes();
   }
 
   toggleWall(node: Node): void {
-    if (this.grid[node.row][node.col].animation === Animation.Clear) {
-      this.grid[node.row][node.col].animation = Animation.Wall;
+    if (this.grid[node.row][node.col].type === NodeTypes.Clear) {
+      this.grid[node.row][node.col].type = NodeTypes.Wall;
       this.gridChange.next(this.grid);
     }
-    else if (this.grid[node.row][node.col].animation === Animation.Wall) {
-      this.grid[node.row][node.col].animation = Animation.Clear;
+    else if (this.grid[node.row][node.col].type === NodeTypes.Wall) {
+      this.grid[node.row][node.col].type = NodeTypes.Clear;
       this.gridChange.next(this.grid);
     }
   }
 
   animateStartEndNodes(): void {
-    this.grid[this.endNode.row][this.endNode.col].animation = Animation.End;
-    this.grid[this.startNode.row][this.startNode.col].animation = Animation.Start;
+    this.grid[this.endNode.row][this.endNode.col].type = NodeTypes.End;
+    this.grid[this.startNode.row][this.startNode.col].type = NodeTypes.Start;
     this.gridChange.next(this.grid);
   }
 
   resetGrid(): void {
     this.grid.forEach((row) => {
       row.forEach((node) => {
-        if (node.animation === Animation.Visited || node.animation === Animation.Path)
-          {node.animation = Animation.Clear; }
+        if (node.type === NodeTypes.Visited || node.type === NodeTypes.Path)
+          {node.type = NodeTypes.Clear; }
         node.distance = undefined;
         node.previousNode = undefined;
         node.visited = undefined;
@@ -113,7 +113,7 @@ export class GridService {
         row.push({
           row: i,
           col: j,
-          animation: Animation.Clear,
+          type: NodeTypes.Clear,
           weight: type === 'Weighted' ? Math.ceil(Math.random() * 5) : 1
         });
       }
@@ -130,8 +130,8 @@ export class GridService {
     let count = 1;
     for (const node of visitedNodes){
       setTimeout(() => {
-        if (node.animation === Animation.Start || node.animation === Animation.End) { return; }
-        this.grid[node.row][node.col].animation = Animation.Visited;
+        if (node.type === NodeTypes.Start || node.type === NodeTypes.End) { return; }
+        this.grid[node.row][node.col].type = NodeTypes.Visited;
         this.gridChange.next(this.grid);
       }, delay * count++);
     }
@@ -139,8 +139,8 @@ export class GridService {
     const shortestPath = getShortestPath(visitedNodes);
     for (const node of shortestPath){
       setTimeout(() => {
-        if (node.animation === Animation.Start || node.animation === Animation.End) { return; }
-        this.grid[node.row][node.col].animation = Animation.Path;
+        if (node.type === NodeTypes.Start || node.type === NodeTypes.End) { return; }
+        this.grid[node.row][node.col].type = NodeTypes.Path;
         this.gridChange.next(this.grid);
       }, delay * count++);
     }

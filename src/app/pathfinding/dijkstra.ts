@@ -1,4 +1,4 @@
-import {Animation, Node} from './types';
+import {NodeTypes, Node} from './types';
 
 export const dijkstra = (grid: Node[][], startNode: Node, endNode: Node): Node[] => {
   const visitedNodes: Node[] = [];
@@ -17,7 +17,7 @@ export const dijkstra = (grid: Node[][], startNode: Node, endNode: Node): Node[]
     const closestNode = unvisitedNodes.shift();
     // If endNode is unreachable => break
     if (closestNode.distance === Infinity) { break; }
-    if (closestNode.animation === Animation.Wall) { continue; }
+    if (closestNode.type === NodeTypes.Wall) { continue; }
 
     closestNode.visited = true;
     visitedNodes.push(closestNode);
@@ -30,26 +30,18 @@ export const dijkstra = (grid: Node[][], startNode: Node, endNode: Node): Node[]
   return visitedNodes;
 };
 
-// TODO REFACTOR THIS FUNC
 const sortUnvisited = (unvisitedNodes: Node[], startNode: Node): void => {
   unvisitedNodes.sort((nodeA, nodeB) => {
     if (nodeA.distance === nodeB.distance){
-      if (nodeA.animation === Animation.End) { return -1; }
-      if (nodeB.animation === Animation.End) { return 1; }
-      let nodeAQuadrant = 0;
-      let nodeBQuadrant = 0;
 
-      if (nodeA.row < startNode.row && nodeA.col <= startNode.col) { nodeAQuadrant = 1; }
-      if (nodeA.row >= startNode.row && nodeA.col < startNode.col) { nodeAQuadrant = 2; }
-      if (nodeA.row > startNode.row && nodeA.col >= startNode.col) { nodeAQuadrant = 3; }
-      if (nodeA.row <= startNode.row && nodeA.col > startNode.col) { nodeAQuadrant = 4; }
-
-      if (nodeB.row < startNode.row && nodeB.col <= startNode.col) { nodeBQuadrant = 1; }
-      if (nodeB.row >= startNode.row && nodeB.col < startNode.col) { nodeBQuadrant = 2; }
-      if (nodeB.row > startNode.row && nodeB.col >= startNode.col) { nodeBQuadrant = 3; }
-      if (nodeB.row <= startNode.row && nodeB.col > startNode.col) { nodeBQuadrant = 4; }
-
-      return nodeBQuadrant - nodeAQuadrant;
+      // Makes the clockwise animation
+      const getQuadrant = (node: Node): number => {
+        if (node.row < startNode.row && node.col <= startNode.col) { return 1; }
+        if (node.row >= startNode.row && node.col < startNode.col) { return 2; }
+        if (node.row > startNode.row && node.col >= startNode.col) { return 3; }
+        if (node.row <= startNode.row && node.col > startNode.col) { return 4; }
+      };
+      return getQuadrant(nodeB) - getQuadrant(nodeA);
     }
     return nodeA.distance - nodeB.distance;
   });
@@ -59,16 +51,16 @@ const updateUnvisitedNeighbours = (node: Node, grid: Node[][]): void => {
   const unvisitedNeighbours: Node[] = [];
   const { col, row } = node;
 
-  if (col > 0)// && !grid[row][col - 1].visited )
+  if (col > 0)
     { unvisitedNeighbours.push(grid[row][col - 1]); }
 
-  if (row > 0)// && !grid[row - 1][col].visited)
+  if (row > 0)
     { unvisitedNeighbours.push(grid[row - 1][col]); }
 
-  if (col < grid[0].length - 1)// && !grid[row][col + 1].visited)
+  if (col < grid[0].length - 1)
     { unvisitedNeighbours.push(grid[row][col + 1]); }
 
-  if (row < grid.length - 1)// && !grid[row + 1][col].visited)
+  if (row < grid.length - 1)
     { unvisitedNeighbours.push(grid[row + 1][col]); }
 
   for (const neighbour of unvisitedNeighbours) {

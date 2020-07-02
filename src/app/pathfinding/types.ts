@@ -1,4 +1,4 @@
-export enum Animation {
+export enum NodeTypes {
   Clear,
   Visited,
   Path,
@@ -10,7 +10,7 @@ export enum Animation {
 export interface Node {
   row: number;
   col: number;
-  animation: Animation;
+  type: NodeTypes;
   weight?: number;
   distance?: number;
   visited?: boolean;
