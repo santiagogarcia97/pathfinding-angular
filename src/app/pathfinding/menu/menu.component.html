@@ -3,9 +3,9 @@
 
     <div class="form-group">
       <label>Algorithm</label>
-      <select>
-        <option>Dijkstra's</option>
-        <option>A*</option>
+      <select [(ngModel)]="algoSelect">
+        <option [value]="'dijkstra'">Dijkstra's</option>
+        <option [value]="'astar'">A*</option>
       </select>
     </div>
 

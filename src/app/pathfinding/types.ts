@@ -13,6 +13,7 @@ export interface Node {
   type: NodeTypes;
   weight?: number;
   distance?: number;
+  h?: number;
   visited?: boolean;
   previousNode?: Node;
 }

@@ -1,7 +1,8 @@
 import {Injectable} from '@angular/core';
 import {Subject} from 'rxjs';
 import {NodeTypes, GridType, Node} from '../types';
-import {dijkstra, getShortestPath} from '../dijkstra';
+import {dijkstra} from '../dijkstra';
+import {astar} from '../astar';
 
 @Injectable({
   providedIn: 'root'
@@ -124,9 +125,22 @@ export class GridService {
     this.animateStartEndNodes();
   }
 
-  visualizeDijkstra(delay: number): void {
+  animateAlgorithm(delay: number, algorithm: string): void {
+    const getShortestPath = (visitedList: Node[]): Node[] => {
+      const path: Node[] = [];
+      let currentNode = visitedList.pop();
+      while (currentNode !== undefined) {
+        path.unshift(currentNode);
+        if (!currentNode.previousNode) { break; }
+        currentNode = currentNode.previousNode;
+      }
+      return path;
+    };
 
-    const visitedNodes = dijkstra(this.grid, this.startNode, this.endNode);
+    let visitedNodes;
+    if (algorithm === 'dijkstra') {visitedNodes = dijkstra(this.grid, this.startNode, this.endNode); }
+    else if (algorithm === 'astar') {visitedNodes = astar(this.grid, this.startNode, this.endNode); }
+
     let count = 1;
     for (const node of visitedNodes){
       setTimeout(() => {
@@ -135,16 +149,18 @@ export class GridService {
         this.gridChange.next(this.grid);
       }, delay * count++);
     }
-
-    const shortestPath = getShortestPath(visitedNodes);
-    for (const node of shortestPath){
-      setTimeout(() => {
-        if (node.type === NodeTypes.Start || node.type === NodeTypes.End) { return; }
-        this.grid[node.row][node.col].type = NodeTypes.Path;
-        this.gridChange.next(this.grid);
-      }, delay * count++);
+    if (visitedNodes[visitedNodes.length - 1].type === NodeTypes.End) {
+      const shortestPath = getShortestPath(visitedNodes);
+      for (const node of shortestPath) {
+        setTimeout(() => {
+          if (node.type === NodeTypes.Start || node.type === NodeTypes.End) {
+            return;
+          }
+          this.grid[node.row][node.col].type = NodeTypes.Path;
+          this.gridChange.next(this.grid);
+        }, delay * count++);
+      }
     }
-
     setTimeout(() => {
       this.menuLockedChange.next(false);
     }, delay * count++);

@@ -12,6 +12,7 @@ export class MenuComponent implements OnInit {
   buttonText = 'Find Path!';
   buttonCss = 'btn-find';
   gridTypeSelect = GridType.Unweighted;
+  algoSelect = 'dijkstra';
   delay = '20';
   menuLocked = false;
 
@@ -43,7 +44,7 @@ export class MenuComponent implements OnInit {
       this.buttonCss = 'btn-reset';
       this.gridService.setGridLocked(true);
       this.gridService.setMenuLocked(true);
-      this.gridService.visualizeDijkstra(parseInt(this.delay, 10));
+      this.gridService.animateAlgorithm(parseInt(this.delay, 10), this.algoSelect);
     }
   }
 }
