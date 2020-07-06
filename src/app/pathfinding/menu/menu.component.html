@@ -1,4 +1,7 @@
 <div class="bs-container">
+
+  <pf-md-tutorial [showModal]="showModal" (modalClose)="onModalClose($event)"></pf-md-tutorial>
+
   <div [className]="menuLocked ? 'menu disabled' : 'menu'">
 
     <div class="form-group">
@@ -36,7 +39,11 @@
     </div>
 
     <div class="form-group">
-      <button class="btn-clear" (click)="newGrid()">New grid</button>
+      <button class="btn-red" (click)="newGrid()">New grid</button>
+    </div>
+
+    <div class="form-group">
+      <button class="btn-help" (click)="handleClickShowModal()">?</button>
     </div>
 
   </div>

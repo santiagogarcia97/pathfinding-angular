@@ -1,7 +1,7 @@
 .menu {
   display: flex;
   justify-content: center;
-  flex-wrap: wrap;
+  flex-wrap: nowrap;
 }
 
 .form-group {
@@ -14,6 +14,7 @@
 label {
   padding: 5px;
   font-weight: bold;
+  white-space: nowrap;
 }
 select {
   padding: 5px;
@@ -21,9 +22,8 @@ select {
 }
 button {
   flex: 1 0;
-  border: none;
+  outline: none;
   color: white;
-  width: 100px;
   height: 31px;
   border-radius: 5px;
   text-align: center;
@@ -31,14 +31,21 @@ button {
   font-size: 16px;
 }
 
-.btn-clear {
-  background-color: #aa0000;
-}
-.btn-find {
+.btn-green {
   background-color: #1d7200;
+  border: none;
+  width: 100px;
 }
-.btn-reset {
+.btn-red {
   background-color: #aa0000;
+  border: none;
+  width: 100px;
+}
+.btn-help {
+  background-color: #ffffff;
+  width: 31px;
+  border-color: #323232;
+  color: #323232;
 }
 
 .divider {
