@@ -1,8 +1,8 @@
 import {Injectable} from '@angular/core';
 import {Subject} from 'rxjs';
-import {NodeTypes, GridType, Node} from '../types';
-import {dijkstra} from '../dijkstra';
-import {astar} from '../astar';
+import {NodeTypes, Node} from '../types';
+import {dijkstra} from '../algorithms/dijkstra';
+import {astar} from '../algorithms/astar';
 
 @Injectable({
   providedIn: 'root'
@@ -106,7 +106,7 @@ export class GridService {
     });
   }
 
-  newGrid(type: GridType): void {
+  newGrid(type: string): void {
     const clearGrid = [];
     for (let i = 0; i < this.ROWS; i++) {
       const row: Node[] = [];
@@ -115,7 +115,7 @@ export class GridService {
           row: i,
           col: j,
           type: NodeTypes.Clear,
-          weight: type === 'Weighted' ? Math.ceil(Math.random() * 5) : 1
+          weight: type === 'weighted' ? Math.ceil(Math.random() * 5) : 1
         });
       }
       clearGrid.push(row);

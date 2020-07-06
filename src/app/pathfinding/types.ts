@@ -18,8 +18,3 @@ export interface Node {
   previousNode?: Node;
 }
 
-export enum GridType {
-  Unweighted = 'Unweighted',
-  Weighted =  'Weighted'
-}
-

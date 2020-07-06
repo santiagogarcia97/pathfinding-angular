@@ -1,5 +1,5 @@
-import {Component, OnInit} from '@angular/core';
-import {NodeTypes, GridType, Node} from '../types';
+import {Component} from '@angular/core';
+import {NodeTypes, Node} from '../types';
 import {GridService} from '../services/grid.service';
 
 @Component({
@@ -7,7 +7,7 @@ import {GridService} from '../services/grid.service';
   templateUrl: './grid.component.html',
   styleUrls: ['./grid.component.css']
 })
-export class GridComponent implements OnInit {
+export class GridComponent  {
 
   grid: Node[][];
 
@@ -15,10 +15,7 @@ export class GridComponent implements OnInit {
     this.gridService.gridChange.subscribe((value) => {
       this.grid = value;
     });
-    gridService.newGrid(GridType.Unweighted);
-  }
-
-  ngOnInit(): void {
+    gridService.newGrid('unweighted');
   }
 
   getClass(node: Node): string {

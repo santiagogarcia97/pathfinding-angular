@@ -1,17 +1,16 @@
 import { Component, OnInit } from '@angular/core';
 import {GridService} from '../services/grid.service';
-import {GridType} from '../types';
 
 @Component({
   selector: 'pf-menu',
   templateUrl: './menu.component.html',
   styleUrls: ['./menu.component.css']
 })
-export class MenuComponent implements OnInit {
+export class MenuComponent {
 
   buttonText = 'Find Path!';
   buttonCss = 'btn-find';
-  gridTypeSelect = GridType.Unweighted;
+  gridTypeSelect = 'unweighted';
   algoSelect = 'dijkstra';
   delay = '20';
   menuLocked = false;
@@ -20,9 +19,6 @@ export class MenuComponent implements OnInit {
     this.gridService.menuLockedChange.subscribe((value) => {
       this.menuLocked = value;
     });
-  }
-
-  ngOnInit(): void {
   }
 
   newGrid(): void {
