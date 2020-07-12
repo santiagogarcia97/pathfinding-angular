@@ -2,7 +2,27 @@
 
   <div class="modal-content">
     <span class="close" (click)="close()">&times;</span>
-    <p>Some text in the Modal..</p>
+    <h2><p>Pathfinder</p></h2>
+    <p><strong>Click</strong> over a clear node to toggle a <strong style="color: #0027ce">Wall</strong></p>
+
+    <p><strong>Drag and drop</strong> the
+      <strong style="color: red">Start</strong> and <strong style="color: green">End</strong> nodes
+      to change their position
+    </p>
+
+    <h3><p>Grid Types</p></h3>
+
+    <p><strong>Unweighted:</strong> each node has a weight of <strong>1</strong></p>
+
+    <p><strong>Weighted:</strong> each node has a random weight between <strong>1</strong> and <strong>5</strong></p>
+
+    <div class="nodes">
+      <div class="node">1</div>
+      <div class="node n2">2</div>
+      <div class="node n3">3</div>
+      <div class="node n4">4</div>
+      <div class="node n5">5</div>
+    </div>
   </div>
 
 </div>

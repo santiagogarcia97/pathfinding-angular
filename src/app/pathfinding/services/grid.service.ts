@@ -16,7 +16,7 @@ export class GridService {
   private MouseDown = false;
   private MouseDrag =  NodeTypes.Clear;
 
-  private startNode: Node = {row: 12, col: 20, type: NodeTypes.Start};
+  private startNode: Node = {row: 12, col: 19, type: NodeTypes.Start};
   private endNode: Node = {row: 12, col: 40, type: NodeTypes.End};
   private grid: Node[][] = [];
   public gridChange: Subject<Node[][]> = new Subject<Node[][]>();

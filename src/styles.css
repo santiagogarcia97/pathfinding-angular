@@ -16,11 +16,6 @@ body {
   margin-right: auto;
   margin-left: auto;
 }
-@media (min-width: 768px) {
-  .bs-container {
-    width: 750px;
-  }
-}
 @media (min-width: 992px) {
   .bs-container {
     width: 970px;
