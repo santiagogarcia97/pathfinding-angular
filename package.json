@@ -6,7 +6,7 @@
     "start": "ng serve --host 0.0.0.0",
     "build": "ng build",
     "lint": "ng lint",
-    "deploy": "ng deploy --base-href='/pathfinding-angular/'"
+    "deploy": "ng deploy --base-href=/pathfinding-angular/"
   },
   "private": true,
   "dependencies": {
